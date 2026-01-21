@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriTech Direct | Farmer to Buyer Marketplace</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Authentication Page (Initial View) -->
+    <div class="auth-container" id="authContainer">
+        <div class="auth-box">
+            <div class="auth-header">
+                <h2 id="authTitle">AgriTech Direct</h2>
+                <p id="authSubtitle">Connect Farmers Directly with Buyers</p>
+            </div>
+
+            <div class="auth-body">
+                <div class="auth-tabs">
+                    <button class="auth-tab active" id="loginTab">Login</button>
+                    <button class="auth-tab" id="registerTab">Register</button>
+                </div>
+
+                <!-- Login Form -->
+                <div class="auth-form active" id="loginForm">
+                    <div class="user-type-selection">
+                        <button class="user-type-btn active" data-type="buyer">
+                            <i class="fas fa-shopping-cart"></i> Buyer
+                        </button>
+                        <button class="user-type-btn" data-type="farmer">
+                            <i class="fas fa-tractor"></i> Farmer
+                        </button>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="loginEmail">Email Address</label>
+                        <input type="email" id="loginEmail" class="form-control" placeholder="Enter your email">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" class="form-control"
+                            placeholder="Enter your password">
+                    </div>
+
+                    <button class="auth-btn" id="loginBtn">Login</button>
+
+                    <div class="auth-footer">
+                        <p>Don't have an account? <a href="#" id="switchToRegister">Register here</a></p>
+                    </div>
+                </div>
+
+                <!-- Registration Form -->
+                <div class="auth-form" id="registerForm">
+                    <div class="user-type-selection">
+                        <button class="user-type-btn active" data-type="buyer">
+                            <i class="fas fa-shopping-cart"></i> Buyer
+                        </button>
+                        <button class="user-type-btn" data-type="farmer">
+                            <i class="fas fa-tractor"></i> Farmer
+                        </button>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="registerName">Full Name</label>
+                        <input type="text" id="registerName" class="form-control" placeholder="Enter your full name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="registerEmail">Email Address</label>
+                        <input type="email" id="registerEmail" class="form-control" placeholder="Enter your email">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="registerPhone">Phone Number</label>
+                        <input type="tel" id="registerPhone" class="form-control" placeholder="Enter your phone number">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="registerPassword">Password</label>
+                        <input type="password" id="registerPassword" class="form-control"
+                            placeholder="Create a password">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="registerConfirmPassword">Confirm Password</label>
+                        <input type="password" id="registerConfirmPassword" class="form-control"
+                            placeholder="Confirm your password">
+                    </div>
+
+                    <div class="form-group" id="farmerFields" style="display: none;">
+                        <label for="farmLocation">Farm Location</label>
+                        <input type="text" id="farmLocation" class="form-control"
+                            placeholder="Enter your farm location">
+
+                        <label for="farmSize" style="margin-top: 15px;">Farm Size (Acres)</label>
+                        <input type="number" id="farmSize" class="form-control" placeholder="Enter farm size in acres">
+                    </div>
+
+                    <button class="auth-btn" id="registerBtn">Create Account</button>
+
+                    <div class="auth-footer">
+                        <p>Already have an account? <a href="#" id="switchToLogin">Login here</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Application (Hidden Initially) -->
+    <div class="app-container" id="appContainer">
+        <!-- Header & Navigation -->
+        <header>
+            <div class="container">
+                <nav class="nav-container">
+                    <a href="#" class="logo">
+                        <i class="fas fa-seedling"></i>
+                        <span class="logo-text">AgriTech Direct</span>
+                    </a>
+
+                    <ul class="nav-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#prices">Price Comparison</a></li>
+                        <li><a href="#products">Products</a></li>
+                        <li><a href="#dashboard" id="dashboardLink" class="hidden">Dashboard</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+
+                    <div class="header-controls">
+                        <div class="language-selector">
+                            <button class="language-btn" id="languageBtn">
+                                <i class="fas fa-language"></i>
+                                <span id="currentLanguage">English</span>
+                            </button>
+                            <div class="language-dropdown" id="languageDropdown">
+                                <div class="language-option active" data-lang="en">
+                                    <span>🇬🇧</span> English
+                                </div>
+                                <div class="language-option" data-lang="hi">
+                                    <span>🇮🇳</span> हिंदी (Hindi)
+                                </div>
+                                <div class="language-option" data-lang="te">
+                                    <span>🇮🇳</span> తెలుగు (Telugu)
+                                </div>
+                                <div class="language-option" data-lang="kn">
+                                    <span>🇮🇳</span> ಕನ್ನಡ (Kannada)
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="user-profile" id="userProfile">
+                            <div class="user-avatar" id="userAvatar">U</div>
+                            <div class="user-name" id="userName">User</div>
+                            <div class="user-dropdown" id="userDropdown">
+                                <a href="#profile"><i class="fas fa-user"></i> Profile</a>
+                                <a href="#orders"><i class="fas fa-shopping-bag"></i> Orders</a>
+                                <a href="#settings"><i class="fas fa-cog"></i> Settings</a>
+                                <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                            </div>
+                        </div>
+
+                        <button class="mobile-menu-btn" id="mobileMenuBtn">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="container">
+                <h1 id="heroTitle">Direct Farm-to-Restaurant Marketplace</h1>
+                <p id="heroSubtitle">Eliminating intermediaries to increase farmer profits by 40% and reduce buyer costs
+                    by 30%. Transparent pricing, reliable supply, and direct connections.</p>
+                <a href="#products" class="cta-button" id="ctaButton">Browse Fresh Produce</a>
+            </div>
+        </section>
+
+        <!-- Price Comparison Section -->
+        <section class="price-comparison" id="prices">
+            <div class="container">
+                <h2 class="section-title" id="priceTitle">Price Comparison: Farmer vs Market</h2>
+
+                <div class="price-highlight">
+                    <div class="price-box market-price">
+                        <div class="price-label" id="marketPriceLabel">Average Market Price</div>
+                        <div class="price-value" id="marketPriceValue">₹45/kg</div>
+                        <div class="price-difference" id="marketPriceDiff">+18% Higher</div>
+                    </div>
+
+                    <div class="price-box farmer-price">
+                        <div class="price-label" id="farmerPriceLabel">Average Farmer Price</div>
+                        <div class="price-value" id="farmerPriceValue">₹38/kg</div>
+                        <div class="price-difference" id="farmerPriceDiff">You Save 16%</div>
+                    </div>
+                </div>
+
+                <p class="price-update-info" id="priceUpdateInfo">Updated: <span id="updateTime">Today, 10:30 AM</span>
+                    | Source: AGMARKNET & Local Mandis</p>
+
+                <div class="prices-table-container">
+                    <table class="prices-table" id="marketPricesTable">
+                        <thead>
+                            <tr>
+                                <th id="commodityHeader">Commodity</th>
+                                <th id="marketPriceHeader">Market Price (₹/kg)</th>
+                                <th id="farmerPriceHeader">Farmer Price (₹/kg)</th>
+                                <th id="savingsHeader">You Save</th>
+                                <th id="changeHeader">Change</th>
+                            </tr>
+                        </thead>
+                        <tbody id="pricesTableBody">
+                            <!-- Prices will be loaded via JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Grid Section -->
+        <section class="products-section" id="products">
+            <div class="container">
+                <h2 class="section-title" id="productsTitle">Fresh From Our Farms</h2>
+
+                <div class="products-filter">
+                    <div class="filter-options">
+                        <button class="filter-btn active" data-filter="all" id="filterAll">All</button>
+                        <button class="filter-btn" data-filter="vegetables" id="filterVegetables">Vegetables</button>
+                        <button class="filter-btn" data-filter="fruits" id="filterFruits">Fruits</button>
+                        <button class="filter-btn" data-filter="grains" id="filterGrains">Grains</button>
+                    </div>
+
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="productSearch" placeholder="Search products...">
+                    </div>
+                </div>
+
+                <div class="products-grid" id="productsGrid">
+                    <!-- Products will be loaded via JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Farmer Dashboard (Visible only to farmers) -->
+        <section class="dashboard-section hidden" id="dashboard">
+            <div class="container">
+                <div class="dashboard-header">
+                    <h2 class="section-title" id="dashboardTitle">Farmer Dashboard</h2>
+                    <button class="add-product-btn" id="addProductBtn">
+                        <i class="fas fa-plus"></i>
+                        <span id="addProductText">Add New Product</span>
+                    </button>
+                </div>
+
+                <div class="dashboard-stats">
+                    <div class="stat-card">
+                        <div class="stat-value" id="totalProducts">12</div>
+                        <div class="stat-label" id="totalProductsLabel">Total Products</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="totalOrders">24</div>
+                        <div class="stat-label" id="totalOrdersLabel">Total Orders</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="totalEarnings">₹12,450</div>
+                        <div class="stat-label" id="totalEarningsLabel">Total Earnings</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="avgRating">4.7</div>
+                        <div class="stat-label" id="avgRatingLabel">Average Rating</div>
+                    </div>
+                </div>
+
+                <h3 id="myProductsTitle" style="margin-bottom: 20px;">My Products</h3>
+                <div class="products-grid" id="farmerProductsGrid">
+                    <!-- Farmer's products will be loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Chatbot -->
+        <div class="chatbot-container">
+            <button class="chatbot-btn" id="chatbotToggle">
+                <i class="fas fa-robot"></i>
+            </button>
+
+            <div class="chatbot-window" id="chatbotWindow">
+                <div class="chatbot-header">
+                    <h3><i class="fas fa-robot"></i> <span id="chatbotTitle">AgriTech Assistant</span></h3>
+                    <button class="chatbot-close" id="chatbotClose">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+
+                <div class="chatbot-body" id="chatbotBody">
+                    <!-- Chat messages will be added here -->
+                </div>
+
+                <div class="chatbot-footer">
+                    <div class="chatbot-input-container">
+                        <input type="text" class="chatbot-input" id="chatbotInput" placeholder="Type your question...">
+                        <button class="chatbot-send" id="chatbotSend">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Orders Section -->
+        <section class="orders-section hidden" id="orders">
+            <div class="container">
+                <h2 class="section-title" id="ordersTitle">My Orders</h2>
+
+                <div class="order-filters">
+                    <button class="order-filter-btn active" data-filter="all" id="filterAllOrders">All Orders</button>
+                    <button class="order-filter-btn" data-filter="pending" id="filterPending">Pending</button>
+                    <button class="order-filter-btn" data-filter="confirmed" id="filterConfirmed">Confirmed</button>
+                    <button class="order-filter-btn" data-filter="shipped" id="filterShipped">Shipped</button>
+                    <button class="order-filter-btn" data-filter="delivered" id="filterDelivered">Delivered</button>
+                </div>
+
+                <div class="orders-list" id="ordersList">
+                    <!-- Orders will be loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Settings Section -->
+        <section class="settings-section hidden" id="settings">
+            <div class="container">
+                <h2 class="section-title" id="settingsTitle">Settings</h2>
+
+                <div class="settings-grid" id="settingsGrid">
+                    <div class="setting-card">
+                        <div class="setting-header">
+                            <i class="fas fa-palette"></i>
+                            <h3 id="appearanceTitle">Appearance</h3>
+                        </div>
+                        <div class="setting-option">
+                            <span id="darkModeLabel">Dark Mode</span>
+                            <label class="switch">
+                                <input type="checkbox" id="darkModeToggle">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="setting-card">
+                        <div class="setting-header">
+                            <i class="fas fa-bell"></i>
+                            <h3 id="notificationsTitle">Notifications</h3>
+                        </div>
+                        <div class="setting-option">
+                            <span id="notificationsLabel">Enable Notifications</span>
+                            <label class="switch">
+                                <input type="checkbox" id="notificationsToggle" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Product Management Modals -->
+        <div class="modal-overlay" id="addProductModal">
+            <div class="product-modal">
+                <div class="modal-header">
+                    <h3 id="addProductModalTitle">Add New Product</h3>
+                    <button class="chatbot-close" id="closeAddProductModal">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="productName">Product Name</label>
+                        <input type="text" id="productName" class="form-control" placeholder="Enter product name">
+                    </div>
+                    <div class="form-group">
+                        <label for="productCategory">Category</label>
+                        <select id="productCategory" class="form-control">
+                            <option value="vegetables">Vegetables</option>
+                            <option value="fruits">Fruits</option>
+                            <option value="grains">Grains</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="productFarmerPrice">Farmer Price (₹/kg)</label>
+                        <input type="number" id="productFarmerPrice" class="form-control" placeholder="Enter price">
+                    </div>
+                    <div class="form-group">
+                        <label for="productMarketPrice">Market Price (₹/kg)</label>
+                        <input type="number" id="productMarketPrice" class="form-control"
+                            placeholder="Enter market price">
+                    </div>
+                    <div class="form-group">
+                        <label for="productStock">Stock (kg)</label>
+                        <input type="number" id="productStock" class="form-control" placeholder="Enter stock quantity">
+                    </div>
+                    <div class="form-group">
+                        <label for="productImage">Image URL</label>
+                        <input type="text" id="productImage" class="form-control" placeholder="Enter image URL">
+                    </div>
+                    <div class="form-group">
+                        <label for="productDescription">Description</label>
+                        <textarea id="productDescription" class="form-control" rows="3"
+                            placeholder="Enter description"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="order-action-btn" id="cancelAddProduct">Cancel</button>
+                    <button class="order-action-btn primary" id="saveProduct">Save Product</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading Overlay -->
+        <div class="loading-overlay" id="loadingOverlay">
+            <div class="spinner"></div>
+        </div>
+
+        <!-- Footer -->
+        <footer id="contact">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-column">
+                        <h3 id="footerAboutTitle">AgriTech Direct</h3>
+                        <p id="footerAboutText">Direct marketplace connecting farmers with buyers. Eliminating
+                            intermediaries since 2023.</p>
+                    </div>
+
+                    <div class="footer-column">
+                        <h3 id="footerLinksTitle">Quick Links</h3>
+                        <ul class="footer-links">
+                            <li><a href="#home" id="footerHome">Home</a></li>
+                            <li><a href="#prices" id="footerPrices">Price Comparison</a></li>
+                            <li><a href="#products" id="footerProducts">Products</a></li>
+                            <li><a href="#about" id="footerAbout">About</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h3 id="footerContactTitle">Contact Us</h3>
+                        <ul class="contact-info">
+                            <li>
+                                <i class="fas fa-phone"></i>
+                                <div>
+                                    <p>+91 98765 43210</p>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-envelope"></i>
+                                <div>
+                                    <p>info@agritechdirect.com</p>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-map-marker-alt"></i>
+                                <div>
+                                    <p id="footerAddress">123 Farm Street, Agri City</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h3 id="footerFollowTitle">Follow Us</h3>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="copyright">
+                    <p id="copyrightText">&copy; 2023 AgriTech Direct. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="api.js"></script>
+    <script src="script.js"></script>
+
+</body>
+
+</html>
